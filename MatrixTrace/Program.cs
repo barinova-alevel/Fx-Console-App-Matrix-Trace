@@ -7,6 +7,7 @@ class Program
         Matrix matrix = new Matrix();
         int[,] currentMatrix = matrix.GetDimensions();
         matrix.FillMatrix(currentMatrix);
+        matrix.OutputArray(currentMatrix);
         matrix.GetMatrixTrace(currentMatrix);
 
         Console.ReadKey();

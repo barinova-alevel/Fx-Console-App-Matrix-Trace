@@ -1,15 +1,18 @@
-﻿namespace MatrixLibrary
+﻿using System;
+
+
+namespace MatrixLibrary
 {
     public class Matrix
     {
         //Users input matrix dimensions into the program(columns and lines).
         public int[,] GetDimensions()
         {
-            Console.WriteLine("Enter the number of columns, integer: ");
-            int firstDimension = int.Parse(Console.ReadLine());
-            //check on number
-            // boundary values
             Console.WriteLine("Enter the number of lines, integer: ");
+            int firstDimension = int.Parse(Console.ReadLine());
+            //!!!check on number
+            // boundary values
+            Console.WriteLine("Enter the number of columns, integer: ");
             int secondDimension = int.Parse(Console.ReadLine());
             int[,] dimensionsArray = new int[firstDimension, secondDimension];
             return dimensionsArray;
@@ -27,11 +30,8 @@
                 for (int j = 0; j < arrayToFill.GetLength(1); j++)
                 {
                     arrayToFill[i, j] = random.Next(min, max);
-                    Console.WriteLine(arrayToFill[i, j]);
                 }
             }
-
-
         }
 
         //            Program should find a matrix trace.
@@ -41,31 +41,50 @@
         //Main diagonal of the square matrix is the diagonal which starts in the top left corner and finishes in the bottom right corner.
 
         //Main diagonal for a rectangle matrix is the line, which starts in the top left corner and moves right and down, till the border(bottom or right) of the matrix.
+        
+        // ? Do I have to implement square matrix trace if rectangle matrix has already done? => check Length(0) and Length(1)
 
 
         public int GetMatrixTrace(int[,] matrixArray)
         {
             int numberOfLines = matrixArray.GetLength(0);
             int numberOfRows = matrixArray.GetLength(1);
-            int sum = 0;
-            Console.Write("Principal Diagonal: ");
-
+            int matrixTrace = 0;
+            
             for (int i = 0; i < numberOfLines; i++)
             {
                 for (int j = 0; j < numberOfRows; j++)
                 {
                     if (i == j)
                     {
-                        sum += matrixArray[i, j];
-
-                        Console.Write(matrixArray[i, j] + ", ");
+                        matrixTrace += matrixArray[i, j];
                     }
                 }
             }
             Console.WriteLine("");
-            Console.WriteLine($"Sum of main diagonal: {0}",sum);
-            //Check sum calculation!
-            return sum;
+            Console.WriteLine($"Matrix trace: {matrixTrace}");
+            return matrixTrace;
+        }
+
+        //Program should print the filled matrix into the console.Main diagonal should be highlighted.
+        public void OutputArray(int[,] matrix)
+            //Recheck!!! Wrong column number!
+        {
+            Console.Clear();
+            for (int i = 0; i < matrix.GetLength(0); i++)
+            {
+                for (int j = 0; j < matrix.GetLength(1); j++)
+                {
+                    if (i == j)
+                    {
+                        Console.ForegroundColor = ConsoleColor.Yellow;
+                        Console.Write(matrix[i, j] + "\t");
+                        Console.ResetColor();
+                    }
+                    Console.Write(matrix[i, j] + "\t");
+                }
+                Console.WriteLine();
+            }
         }
     }
 }
