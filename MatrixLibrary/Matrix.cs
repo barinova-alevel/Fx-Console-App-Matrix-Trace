@@ -1,4 +1,6 @@
 ﻿using System;
+using System.ComponentModel.Design;
+using System.Runtime.CompilerServices;
 
 
 namespace MatrixLibrary
@@ -6,14 +8,17 @@ namespace MatrixLibrary
     public class Matrix
     {
         //Users input matrix dimensions into the program(columns and lines).
+        
         public int[,] GetDimensions()
         {
             Console.WriteLine("Enter the number of lines, integer: ");
-            int firstDimension = int.Parse(Console.ReadLine());
-            //!!!check on number
-            // boundary values
+            string usersNumberLines = Console.ReadLine();
+            int firstDimension = CheckNumber(usersNumberLines);
+
             Console.WriteLine("Enter the number of columns, integer: ");
-            int secondDimension = int.Parse(Console.ReadLine());
+            string usersNumberColumn = Console.ReadLine();
+            int secondDimension = CheckNumber(usersNumberColumn);
+
             int[,] dimensionsArray = new int[firstDimension, secondDimension];
             return dimensionsArray;
         }
@@ -68,7 +73,6 @@ namespace MatrixLibrary
 
         //Program should print the filled matrix into the console.Main diagonal should be highlighted.
         public void OutputArray(int[,] matrix)
-            //Recheck!!! Wrong column number!
         {
             Console.Clear();
             for (int i = 0; i < matrix.GetLength(0); i++)
@@ -81,10 +85,27 @@ namespace MatrixLibrary
                         Console.Write(matrix[i, j] + "\t");
                         Console.ResetColor();
                     }
-                    Console.Write(matrix[i, j] + "\t");
+                    else
+                    {
+                        Console.Write(matrix[i, j] + "\t");
+                    } 
                 }
                 Console.WriteLine();
             }
+        }
+
+        private int CheckNumber(string userInput)
+        {
+            int dimension;
+            if (int.TryParse(userInput, out dimension))
+            { }
+            else
+            {
+                Console.WriteLine("Wrong input, press any key to exit");
+                Console.ReadKey();
+                Environment.Exit(0);
+            }
+            return dimension;
         }
     }
 }
