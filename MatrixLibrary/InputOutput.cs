@@ -38,6 +38,36 @@
             }
         }
 
+        public void PrintSnailShellOrderMatrix(int[,] matrix)
+        
+        {
+            int lineStart = 0;
+            int lineEnd = matrix.GetLength(0) - 1;
+            int columnStart = 0;
+            int columnEnd = matrix.GetLength(1) - 1;
+            Console.WriteLine("Matrix in snail shell order: ");
+
+            while (columnStart <= columnEnd && lineStart <= lineEnd)
+            {
+                for (int i = columnStart; i < columnEnd; i++)
+                    Console.Write($"{matrix[lineStart,i]} ");
+
+                for (int i = lineStart; i < lineEnd; i++)
+                    Console.Write($"{matrix[i, columnEnd]} ");
+
+                for (int i = columnEnd; i > columnStart; i--)
+                    Console.Write($"{matrix[lineEnd, i]} ");
+
+                for (int i = lineEnd; i > lineStart; i--)
+                    Console.Write($"{matrix[i, columnStart]} ");
+
+                lineStart++;
+                columnEnd--;
+                lineEnd--;
+                columnStart++;
+            }
+        }
+
         private int CheckNumber(string userInput)
         {
             int dimension;

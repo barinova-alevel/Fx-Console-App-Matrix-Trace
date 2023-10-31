@@ -13,6 +13,7 @@ class Program
         filledMatrix = matrix.FillMatrix(initMatrix);
         inputOutput.OutputArray(filledMatrix);
         matrix.GetMatrixTrace(filledMatrix);
+        inputOutput.PrintSnailShellOrderMatrix(filledMatrix);
 
         Console.ReadKey();
     }
