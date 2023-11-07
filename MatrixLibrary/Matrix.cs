@@ -1,7 +1,26 @@
-﻿namespace MatrixLibrary
+﻿using System.Runtime.CompilerServices;
+
+namespace MatrixLibrary
 {
     public class Matrix
     {
+        private int[,] initMatrix { get; set; }
+        public int Lines;
+        public int Columns;
+
+        public Matrix(int lines, int columns)
+        {
+            Lines = lines;
+            Columns = columns;
+            initMatrix = new int[lines, columns];
+        }
+
+        public int this[int line, int column]
+        {
+            get => initMatrix[line - 1, column - 1];
+            set => initMatrix[line - 1, column - 1] = value;
+        }
+
         public int[,] FillMatrix(int[,] arrayToFill)
         {
             int max = 100;

@@ -4,13 +4,19 @@
     {
         public int[,] GetDimensions()
         {
-            Console.WriteLine("Enter the number of lines, integer: ");
-            string usersNumberLines = Console.ReadLine();
-            int firstDimension = CheckNumber(usersNumberLines);
+            int firstDimension;
+            int secondDimension;
+            string usersNumberLines;
+            string usersNumberColumn;
 
-            Console.WriteLine("Enter the number of columns, integer: ");
-            string usersNumberColumn = Console.ReadLine();
-            int secondDimension = CheckNumber(usersNumberColumn);
+            Console.WriteLine("Enter the number of lines, positive integer: ");
+            usersNumberLines = Console.ReadLine();
+            firstDimension = CheckNumber(usersNumberLines);
+
+            Console.WriteLine("Enter the number of columns, positive integer: ");
+            usersNumberColumn = Console.ReadLine();
+
+            secondDimension = CheckNumber(usersNumberColumn);
 
             int[,] dimensionsArray = new int[firstDimension, secondDimension];
             return dimensionsArray;
@@ -39,7 +45,7 @@
         }
 
         public void PrintSnailShellOrderMatrix(int[,] matrix)
-        
+
         {
             int lineStart = 0;
             int lineEnd = matrix.GetLength(0) - 1;
@@ -50,7 +56,7 @@
             while (columnStart <= columnEnd && lineStart <= lineEnd)
             {
                 for (int i = columnStart; i < columnEnd; i++)
-                    Console.Write($"{matrix[lineStart,i]} ");
+                    Console.Write($"{matrix[lineStart, i]} ");
 
                 for (int i = lineStart; i < lineEnd; i++)
                     Console.Write($"{matrix[i, columnEnd]} ");
@@ -68,16 +74,23 @@
             }
         }
 
-        private int CheckNumber(string userInput)
+        private static int CheckNumber(string userInput)
         {
             int dimension;
-            if (int.TryParse(userInput, out dimension))
-            { }
-            else
+            while (!int.TryParse(userInput, out dimension) || (dimension<=0))
             {
-                Console.WriteLine("Wrong input, press any key to exit");
-                Console.ReadKey();
-                Environment.Exit(0);
+                Console.WriteLine("Wrong input, must be a positive integer. Try again:");
+                string newInput = Console.ReadLine();
+                if (!(newInput == null))
+                {
+                    userInput = newInput;
+                }
+                else
+                {
+                    Console.WriteLine("Wrong input, press any key to exit");
+                    Console.ReadKey();
+                    Environment.Exit(0);
+                }
             }
             return dimension;
         }
