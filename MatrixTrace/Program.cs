@@ -9,12 +9,15 @@ class Program
         int[,] initMatrix;
         int[,] filledMatrix;
 
-        initMatrix = inputOutput.GetDimensions();
+        initMatrix = Matrix.CreateMatrix();
+
         var matrix = new Matrix(initMatrix.GetLength(0), initMatrix.GetLength(1));
         filledMatrix = matrix.FillMatrix(initMatrix);
         inputOutput.OutputArray(filledMatrix);
         matrix.GetMatrixTrace(filledMatrix);
-        inputOutput.PrintSnailShellOrderMatrix(filledMatrix);
+
+        Console.WriteLine("Matrix in snail shell order: ");
+        Console.WriteLine(matrix.SnailShellPath(filledMatrix));
 
         Console.ReadKey();
     }

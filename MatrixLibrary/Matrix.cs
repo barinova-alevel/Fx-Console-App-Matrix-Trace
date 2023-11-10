@@ -1,4 +1,5 @@
 ﻿using System.Runtime.CompilerServices;
+using System.Text;
 
 namespace MatrixLibrary
 {
@@ -19,6 +20,18 @@ namespace MatrixLibrary
         {
             get => initMatrix[line - 1, column - 1];
             set => initMatrix[line - 1, column - 1] = value;
+        }
+
+        public static int[,] CreateMatrix()
+        {
+            int firstDimension;
+            int secondDimension;
+
+            firstDimension = InputOutput.GetUserDimension("line");
+            secondDimension = InputOutput.GetUserDimension("column");
+
+            int[,] dimensionsArray = new int[firstDimension, secondDimension];
+            return dimensionsArray;
         }
 
         public int[,] FillMatrix(int[,] arrayToFill)
@@ -56,6 +69,39 @@ namespace MatrixLibrary
             Console.WriteLine("");
             Console.WriteLine($"Matrix trace: {matrixTrace}");
             return matrixTrace;
+        }
+
+        public string SnailShellPath(int[,] matrix)
+        {
+            int lineStart = 0;
+            int lineEnd = matrix.GetLength(0) - 1;
+            int columnStart = 0;
+            int columnEnd = matrix.GetLength(1) - 1;
+
+            StringBuilder snailShell = new StringBuilder();
+
+            while (columnStart <= columnEnd && lineStart <= lineEnd)
+            {
+                //Check bounds
+                //Check the algorithm
+                for (int i = columnStart; i < columnEnd; i++)
+                    snailShell.Append(matrix[i, columnStart] + " ");
+
+                for (int i = lineStart; i < lineEnd; i++)
+                    snailShell.Append(matrix[i, columnStart] + " ");
+
+                for (int i = columnEnd; i > columnStart; i--)
+                    snailShell.Append(matrix[i, columnStart]);
+
+                for (int i = lineEnd; i > lineStart; i--)
+                    snailShell.Append(matrix[i, columnStart]);
+
+                lineStart++;
+                columnEnd--;
+                lineEnd--;
+                columnStart++;
+            }
+            return snailShell.ToString();
         }
     }
 }
