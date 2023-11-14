@@ -22,7 +22,7 @@ namespace MatrixLibrary
             set => initMatrix[line - 1, column - 1] = value;
         }
 
-        public static int[,] CreateMatrix()
+        public static int[,] CreateMatrix() // why don't i use constructor to create a matrix as an object?  
         {
             int firstDimension;
             int secondDimension;
@@ -36,6 +36,7 @@ namespace MatrixLibrary
 
         public int[,] FillMatrix(int[,] arrayToFill)
         {
+            //This values better to move out as constants
             int max = 100;
             int min = 0;
             Random random = new Random();
@@ -44,7 +45,7 @@ namespace MatrixLibrary
             {
                 for (int j = 0; j < arrayToFill.GetLength(1); j++)
                 {
-                    arrayToFill[i, j] = random.Next(min, max);
+                    arrayToFill[i, j] = random.Next(min, max + 1);
                 }
             }
             return arrayToFill;
@@ -66,12 +67,14 @@ namespace MatrixLibrary
                     }
                 }
             }
+
+            //!!!
             Console.WriteLine("");
             Console.WriteLine($"Matrix trace: {matrixTrace}");
             return matrixTrace;
         }
 
-        public string SnailShellPath(int[,] matrix)
+        public static string SnailShellPath(int[,] matrix)
         {
             int lineStart = 0;
             int lineEnd = matrix.GetLength(0) - 1;
@@ -82,19 +85,17 @@ namespace MatrixLibrary
 
             while (columnStart <= columnEnd && lineStart <= lineEnd)
             {
-                //Check bounds
-                //Check the algorithm
                 for (int i = columnStart; i < columnEnd; i++)
-                    snailShell.Append(matrix[i, columnStart] + " ");
+                    snailShell.AppendFormat("{0} ", matrix[lineStart,i]);
 
                 for (int i = lineStart; i < lineEnd; i++)
-                    snailShell.Append(matrix[i, columnStart] + " ");
+                    snailShell.AppendFormat("{0} ", matrix[i, columnEnd]);
 
                 for (int i = columnEnd; i > columnStart; i--)
-                    snailShell.Append(matrix[i, columnStart]);
+                    snailShell.AppendFormat("{0} ", matrix[lineEnd, i]);
 
                 for (int i = lineEnd; i > lineStart; i--)
-                    snailShell.Append(matrix[i, columnStart]);
+                    snailShell.AppendFormat("{0} ", matrix[i, columnStart]);
 
                 lineStart++;
                 columnEnd--;

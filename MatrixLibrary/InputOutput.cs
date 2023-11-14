@@ -37,6 +37,12 @@ namespace MatrixLibrary
             }
         }
 
+        public void OutputSnailShellMatrixOrder(int[,] filledMatrix)
+        {
+            Console.WriteLine("Matrix in snail shell order: ");
+            Console.WriteLine(Matrix.SnailShellPath(filledMatrix));
+        }
+
         private static int CheckNumber(string userInput)
         {
             int dimension;

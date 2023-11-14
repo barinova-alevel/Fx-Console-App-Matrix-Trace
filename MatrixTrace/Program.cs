@@ -15,9 +15,7 @@ class Program
         filledMatrix = matrix.FillMatrix(initMatrix);
         inputOutput.OutputArray(filledMatrix);
         matrix.GetMatrixTrace(filledMatrix);
-
-        Console.WriteLine("Matrix in snail shell order: ");
-        Console.WriteLine(matrix.SnailShellPath(filledMatrix));
+        inputOutput.OutputSnailShellMatrixOrder(filledMatrix);
 
         Console.ReadKey();
     }
