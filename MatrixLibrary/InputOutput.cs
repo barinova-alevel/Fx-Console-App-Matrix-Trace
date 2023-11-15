@@ -37,6 +37,12 @@ namespace MatrixLibrary
             }
         }
 
+        public void OutputMatrixTrace(int matrixTrace)
+        {
+            Console.WriteLine("");
+            Console.WriteLine($"Matrix trace: {matrixTrace}");
+        }
+
         public void OutputSnailShellMatrixOrder(int[,] filledMatrix)
         {
             Console.WriteLine("Matrix in snail shell order: ");

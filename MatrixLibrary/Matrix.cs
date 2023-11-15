@@ -1,5 +1,4 @@
-﻿using System.Runtime.CompilerServices;
-using System.Text;
+﻿using System.Text;
 
 namespace MatrixLibrary
 {
@@ -19,7 +18,6 @@ namespace MatrixLibrary
         public int this[int line, int column]
         {
             get => initMatrix[line - 1, column - 1];
-            set => initMatrix[line - 1, column - 1] = value;
         }
 
         public static int[,] CreateMatrix() // why don't i use constructor to create a matrix as an object?  
@@ -34,11 +32,8 @@ namespace MatrixLibrary
             return dimensionsArray;
         }
 
-        public int[,] FillMatrix(int[,] arrayToFill)
+        public int[,] FillMatrix(int[,] arrayToFill, int min, int max)
         {
-            //This values better to move out as constants
-            int max = 100;
-            int min = 0;
             Random random = new Random();
 
             for (int i = 0; i < arrayToFill.GetLength(0); i++)
@@ -67,10 +62,6 @@ namespace MatrixLibrary
                     }
                 }
             }
-
-            //!!!
-            Console.WriteLine("");
-            Console.WriteLine($"Matrix trace: {matrixTrace}");
             return matrixTrace;
         }
 
@@ -86,7 +77,7 @@ namespace MatrixLibrary
             while (columnStart <= columnEnd && lineStart <= lineEnd)
             {
                 for (int i = columnStart; i < columnEnd; i++)
-                    snailShell.AppendFormat("{0} ", matrix[lineStart,i]);
+                    snailShell.AppendFormat("{0} ", matrix[lineStart, i]);
 
                 for (int i = lineStart; i < lineEnd; i++)
                     snailShell.AppendFormat("{0} ", matrix[i, columnEnd]);

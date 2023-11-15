@@ -3,6 +3,8 @@ using MatrixLibrary;
 
 class Program
 {
+    public const int MaxMatrixEntry = 100;
+    public const int MinMatrixEntry = 0;
     static void Main(string[] args)
     {
         var inputOutput = new InputOutput();
@@ -12,11 +14,14 @@ class Program
         initMatrix = Matrix.CreateMatrix();
 
         var matrix = new Matrix(initMatrix.GetLength(0), initMatrix.GetLength(1));
-        filledMatrix = matrix.FillMatrix(initMatrix);
+        filledMatrix = matrix.FillMatrix(initMatrix, MinMatrixEntry, MaxMatrixEntry);
         inputOutput.OutputArray(filledMatrix);
-        matrix.GetMatrixTrace(filledMatrix);
+        inputOutput.OutputMatrixTrace(matrix.GetMatrixTrace(filledMatrix));
         inputOutput.OutputSnailShellMatrixOrder(filledMatrix);
 
         Console.ReadKey();
     }
 }
+
+//check unit tests
+//These tests are for Matrix class, co name them MatrixTests

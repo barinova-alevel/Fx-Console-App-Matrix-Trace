@@ -1,14 +1,15 @@
-using MatrixLibrary;
+using Matrix;
 
 namespace MatrixTests
 {
+    // These tests are for Matrix class, co name them MatrixTests
     [TestClass]
     public class MatrixTraceTests
     {
         [TestMethod]
         public void CheckMatrixTrace()
         {
-            // Arrange
+            // Arrange 
             int matrixTrace;
             int[,] filledMatrix = { { 1, 2, 3 }, { 4, 5, 0 } };
             Matrix matrix = new Matrix();
