@@ -17,6 +17,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\MatrixLibrary\Matrix.csproj" />
+    <ProjectReference Include="..\MatrixTrace\Matrix.Console.csproj" />
   </ItemGroup>
 
 </Project>

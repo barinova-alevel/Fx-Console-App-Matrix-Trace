@@ -1,6 +1,6 @@
 ﻿using System.Text;
 
-namespace MatrixLibrary
+namespace Matrix
 {
     public class InputOutput
     {

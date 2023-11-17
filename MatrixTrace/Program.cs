@@ -1,5 +1,4 @@
-﻿using System.Net.Http.Headers;
-using MatrixLibrary;
+﻿using Matrix;
 
 class Program
 {
@@ -11,9 +10,9 @@ class Program
         int[,] initMatrix;
         int[,] filledMatrix;
 
-        initMatrix = Matrix.CreateMatrix();
+        initMatrix = Matrix.Matrix.CreateMatrix();
 
-        var matrix = new Matrix(initMatrix.GetLength(0), initMatrix.GetLength(1));
+        var matrix = new Matrix.Matrix(initMatrix.GetLength(0), initMatrix.GetLength(1));
         filledMatrix = matrix.FillMatrix(initMatrix, MinMatrixEntry, MaxMatrixEntry);
         inputOutput.OutputArray(filledMatrix);
         inputOutput.OutputMatrixTrace(matrix.GetMatrixTrace(filledMatrix));
@@ -22,6 +21,3 @@ class Program
         Console.ReadKey();
     }
 }
-
-//check unit tests
-//These tests are for Matrix class, co name them MatrixTests

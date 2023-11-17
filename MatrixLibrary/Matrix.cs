@@ -1,6 +1,6 @@
 ﻿using System.Text;
 
-namespace MatrixLibrary
+namespace Matrix
 {
     public class Matrix
     {
@@ -20,7 +20,7 @@ namespace MatrixLibrary
             get => initMatrix[line - 1, column - 1];
         }
 
-        public static int[,] CreateMatrix() // why don't i use constructor to create a matrix as an object?  
+        public static int[,] CreateMatrix()
         {
             int firstDimension;
             int secondDimension;

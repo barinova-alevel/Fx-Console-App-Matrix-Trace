@@ -1,10 +1,7 @@
-using Matrix;
-
-namespace MatrixTests
+namespace Matrix.Tests
 {
-    // These tests are for Matrix class, co name them MatrixTests
     [TestClass]
-    public class MatrixTraceTests
+    public class MatrixTests
     {
         [TestMethod]
         public void CheckMatrixTrace()
@@ -12,7 +9,7 @@ namespace MatrixTests
             // Arrange 
             int matrixTrace;
             int[,] filledMatrix = { { 1, 2, 3 }, { 4, 5, 0 } };
-            Matrix matrix = new Matrix();
+            Matrix matrix = new Matrix(2,3);
 
             // Act
             matrixTrace = matrix.GetMatrixTrace(filledMatrix);
@@ -27,7 +24,7 @@ namespace MatrixTests
             // Arrange
             int matrixTrace;
             int[,] filledMatrix = { { 1, 2, 3 }, { 4, 5, 10 }, { 100, 22, 23 } };
-            Matrix matrix = new Matrix();
+            Matrix matrix = new Matrix(3,3);
 
             // Act
             matrixTrace = matrix.GetMatrixTrace(filledMatrix);
@@ -42,7 +39,7 @@ namespace MatrixTests
             // Arrange
             int matrixTrace;
             int[,] filledMatrix = { { }, { } };
-            Matrix matrix = new Matrix();
+            Matrix matrix = new Matrix(1,2);
 
             // Act
             matrixTrace = matrix.GetMatrixTrace(filledMatrix);
@@ -56,7 +53,7 @@ namespace MatrixTests
         {
             // Arrange
             int[,] currentMatrix = null;
-            Matrix matrix = new Matrix();
+            Matrix matrix = new Matrix(2,2);
 
             //Act & Assert
             Assert.ThrowsException<NullReferenceException>(() => matrix.GetMatrixTrace(currentMatrix));
@@ -68,7 +65,7 @@ namespace MatrixTests
             // Arrange
             int matrixTrace;
             int[,] filledMatrix = { { 0, 1, 31, 2 }, { 2, -1, 32, 3 }, { 33, 3, 100, 4 }, { 34, 4, 34, 101 } };
-            Matrix matrix = new Matrix();
+            Matrix matrix = new Matrix(4, 4);
 
             // Act
             matrixTrace = matrix.GetMatrixTrace(filledMatrix);
@@ -83,7 +80,7 @@ namespace MatrixTests
             // Arrange
             int matrixTrace;
             int[,] filledMatrix = { { '?', 'w' }, { '7', ')' } };
-            Matrix matrix = new Matrix();
+            Matrix matrix = new Matrix(2,2);
 
             // Act
             matrixTrace = matrix.GetMatrixTrace(filledMatrix);
@@ -99,10 +96,10 @@ namespace MatrixTests
             // Arrange
             int matrixTrace;
             int[,] currentMatrix = new int[50, 51];
-            Matrix matrix = new Matrix();
+            Matrix matrix = new Matrix(50,51);
 
             // Act
-            matrix.FillMatrix(currentMatrix);
+            matrix.FillMatrix(currentMatrix, 0, 100);
             matrixTrace = matrix.GetMatrixTrace(currentMatrix);
 
             //Assert
