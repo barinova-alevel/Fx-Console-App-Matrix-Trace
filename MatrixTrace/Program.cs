@@ -7,17 +7,20 @@ class Program
     static void Main(string[] args)
     {
         var inputOutput = new InputOutput();
-        int[,] initMatrix;
-        int[,] filledMatrix;
+        int firstDimension;
+        int secondDimension;
 
-        initMatrix = Matrix.Matrix.CreateMatrix();
+        firstDimension = InputOutput.GetUserDimension("line");
+        secondDimension = InputOutput.GetUserDimension("column");
 
-        var matrix = new Matrix.Matrix(initMatrix.GetLength(0), initMatrix.GetLength(1));
-        filledMatrix = matrix.FillMatrix(initMatrix, MinMatrixEntry, MaxMatrixEntry);
-        inputOutput.OutputArray(filledMatrix);
-        inputOutput.OutputMatrixTrace(matrix.GetMatrixTrace(filledMatrix));
-        inputOutput.OutputSnailShellMatrixOrder(filledMatrix);
-
+        var matrix = new MatrixClass(firstDimension, secondDimension);
+       
+        inputOutput.OutputArray(matrix);
+        inputOutput.Output("Matrix trace", matrix.GetMatrixTrace(matrix).ToString());
+        inputOutput.Output("Matrix in snail shell order", matrix.SnailShellPath(matrix));
+        
         Console.ReadKey();
     }
 }
+//Unit tests
+//Check snail shell order with 1 line 

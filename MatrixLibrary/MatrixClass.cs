@@ -2,54 +2,47 @@
 
 namespace Matrix
 {
-    public class Matrix
+    public class MatrixClass
     {
-        private int[,] initMatrix { get; set; }
-        public int Lines;
-        public int Columns;
+        const int Min = 0;
+        const int Max = 100;
+        private int[,] _initMatrix;
 
-        public Matrix(int lines, int columns)
+        public int Lines { get; }
+        public int Columns { get; }
+
+        public MatrixClass(int lines, int columns)
         {
             Lines = lines;
             Columns = columns;
-            initMatrix = new int[lines, columns];
-        }
+            _initMatrix = new int[Lines, Columns];
 
-        public int this[int line, int column]
-        {
-            get => initMatrix[line - 1, column - 1];
-        }
-
-        public static int[,] CreateMatrix()
-        {
-            int firstDimension;
-            int secondDimension;
-
-            firstDimension = InputOutput.GetUserDimension("line");
-            secondDimension = InputOutput.GetUserDimension("column");
-
-            int[,] dimensionsArray = new int[firstDimension, secondDimension];
-            return dimensionsArray;
-        }
-
-        public int[,] FillMatrix(int[,] arrayToFill, int min, int max)
-        {
             Random random = new Random();
-
-            for (int i = 0; i < arrayToFill.GetLength(0); i++)
+            if (Lines > 0 && Columns > 0)
             {
-                for (int j = 0; j < arrayToFill.GetLength(1); j++)
+                for (int i = 0; i < Lines; i++)
                 {
-                    arrayToFill[i, j] = random.Next(min, max + 1);
+                    for (int j = 0; j < Columns; j++)
+                    {
+                        _initMatrix[i, j] = random.Next(Min, Max + 1);
+                    }
                 }
             }
-            return arrayToFill;
+            else
+            {
+                //What will happen, if lines or columns will be 0?
+            }
+        }
+        public int this[int line, int column]
+        {
+            get { return _initMatrix[line, column]; }
+            private set { _initMatrix[line, column] = value; }
         }
 
-        public int GetMatrixTrace(int[,] matrixArray)
+        public int GetMatrixTrace(MatrixClass matrixArray)
         {
-            int numberOfLines = matrixArray.GetLength(0);
-            int numberOfRows = matrixArray.GetLength(1);
+            int numberOfLines = matrixArray.Lines;
+            int numberOfRows = matrixArray.Columns;
             int matrixTrace = 0;
 
             for (int i = 0; i < numberOfLines; i++)
@@ -65,12 +58,12 @@ namespace Matrix
             return matrixTrace;
         }
 
-        public static string SnailShellPath(int[,] matrix)
+        public string SnailShellPath(MatrixClass matrix)
         {
             int lineStart = 0;
-            int lineEnd = matrix.GetLength(0) - 1;
+            int lineEnd = matrix.Lines - 1;
             int columnStart = 0;
-            int columnEnd = matrix.GetLength(1) - 1;
+            int columnEnd = matrix.Columns - 1;
 
             StringBuilder snailShell = new StringBuilder();
 

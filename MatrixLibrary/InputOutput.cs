@@ -1,6 +1,4 @@
-﻿using System.Text;
-
-namespace Matrix
+﻿namespace Matrix
 {
     public class InputOutput
     {
@@ -14,13 +12,13 @@ namespace Matrix
             dimension = CheckNumber(userInput);
             return dimension;
         }
-
-        public void OutputArray(int[,] matrix)
+        
+        public void OutputArray(MatrixClass matrix)
         {
             Console.Clear();
-            for (int i = 0; i < matrix.GetLength(0); i++)
+            for (int i = 0; i < matrix.Lines; i++)
             {
-                for (int j = 0; j < matrix.GetLength(1); j++)
+                for (int j = 0; j < matrix.Columns; j++)
                 {
                     if (i == j)
                     {
@@ -37,16 +35,9 @@ namespace Matrix
             }
         }
 
-        public void OutputMatrixTrace(int matrixTrace)
+        public void Output(string title, string message)
         {
-            Console.WriteLine("");
-            Console.WriteLine($"Matrix trace: {matrixTrace}");
-        }
-
-        public void OutputSnailShellMatrixOrder(int[,] filledMatrix)
-        {
-            Console.WriteLine("Matrix in snail shell order: ");
-            Console.WriteLine(Matrix.SnailShellPath(filledMatrix));
+            Console.WriteLine($"{title}: {message}");
         }
 
         private static int CheckNumber(string userInput)
