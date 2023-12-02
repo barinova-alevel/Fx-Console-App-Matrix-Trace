@@ -1,13 +1,7 @@
-﻿using System.ComponentModel.Design;
-using System.Text;
+﻿using System.Text;
 
 namespace Matrix
 {
-    //    Стосовно перевірки lines i columns.Їх варто робити до того, як присвоюєш їх полям класу.
-    //Якщо вони не відповідають якимось твоїм вимогам, то можеш кинути InvalidArgumentException чи щось схоже.Якщо ж брати до уваги 0, то тут я точно не знаю, як з точки зору математики це виглядає.Бо я думаю, що може існувати матриця нульового розміру, тобто без елементів.
-    // format exception
-
-
     public class MatrixClass
     {
         const int Min = 0;

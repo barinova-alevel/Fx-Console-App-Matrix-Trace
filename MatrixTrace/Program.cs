@@ -1,5 +1,4 @@
-﻿using System.ComponentModel.Design;
-using Matrix;
+﻿using Matrix;
 
 class Programs
 {

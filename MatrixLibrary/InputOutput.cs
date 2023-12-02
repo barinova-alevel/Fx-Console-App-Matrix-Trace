@@ -1,6 +1,4 @@
-﻿using System.Net.Http.Headers;
-
-namespace Matrix
+﻿namespace Matrix
 {
     public class InputOutput
     {
