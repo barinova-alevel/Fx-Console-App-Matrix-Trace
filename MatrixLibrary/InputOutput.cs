@@ -1,8 +1,10 @@
-﻿namespace Matrix
+﻿using System.Net.Http.Headers;
+
+namespace Matrix
 {
     public class InputOutput
     {
-        public static int GetUserDimension(string dimensionName)
+        public int GetUserDimension(string dimensionName)
         {
             int dimension;
             string userInput;
@@ -10,6 +12,7 @@
             Console.WriteLine($"Enter the number of {dimensionName}s, positive integer: ");
             userInput = Console.ReadLine();
             dimension = CheckNumber(userInput);
+            //dimension = int.Parse(userInput);
             return dimension;
         }
         
@@ -39,7 +42,7 @@
         {
             Console.WriteLine($"{title}: {message}");
         }
-
+       
         private static int CheckNumber(string userInput)
         {
             int dimension;

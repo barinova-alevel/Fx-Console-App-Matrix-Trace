@@ -1,36 +1,50 @@
-﻿using System.Text;
+﻿using System.ComponentModel.Design;
+using System.Text;
 
 namespace Matrix
 {
+    //    Стосовно перевірки lines i columns.Їх варто робити до того, як присвоюєш їх полям класу.
+    //Якщо вони не відповідають якимось твоїм вимогам, то можеш кинути InvalidArgumentException чи щось схоже.Якщо ж брати до уваги 0, то тут я точно не знаю, як з точки зору математики це виглядає.Бо я думаю, що може існувати матриця нульового розміру, тобто без елементів.
+    // format exception
+
+
     public class MatrixClass
     {
         const int Min = 0;
         const int Max = 100;
         private int[,] _initMatrix;
-
-        public int Lines { get; }
-        public int Columns { get; }
-
+        public int Lines { get; private set; }
+        public int Columns { get; private set; }
+       
         public MatrixClass(int lines, int columns)
         {
-            Lines = lines;
-            Columns = columns;
-            _initMatrix = new int[Lines, Columns];
-
-            Random random = new Random();
-            if (Lines > 0 && Columns > 0)
+            try
             {
-                for (int i = 0; i < Lines; i++)
+                if ((lines <= 0) || (columns <= 0))
                 {
-                    for (int j = 0; j < Columns; j++)
+                    throw new ArgumentException("lines and columns must be greater than zero");
+                }
+                else
+                {
+                    Lines = lines;
+                    Columns = columns;
+
+                    _initMatrix = new int[Lines, Columns];
+
+                    Random random = new Random();
+                    for (int i = 0; i < Lines; i++)
                     {
-                        _initMatrix[i, j] = random.Next(Min, Max + 1);
+                        for (int j = 0; j < Columns; j++)
+                        {
+                            _initMatrix[i, j] = random.Next(Min, Max + 1);
+                        }
                     }
                 }
             }
-            else
-            {
-                //What will happen, if lines or columns will be 0?
+            catch (ArgumentException ex) 
+            { 
+                Console.WriteLine(ex);
+                //what to do here?
             }
         }
         public int this[int line, int column]
