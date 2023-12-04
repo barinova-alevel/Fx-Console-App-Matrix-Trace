@@ -1,5 +1,4 @@
 ﻿using System.Text;
-
 namespace Matrix
 {
     public class MatrixClass
@@ -9,7 +8,39 @@ namespace Matrix
         private int[,] _initMatrix;
         public int Lines { get; private set; }
         public int Columns { get; private set; }
-       
+        public MatrixClass(int lines, int columns, RandomNumberProvider number)
+        {
+            try
+            {
+                if ((lines <= 0) || (columns <= 0))
+                {
+                    throw new ArgumentException("lines and columns must be greater than zero");
+                }
+                else
+                {
+                    Lines = lines;
+                    Columns = columns;
+
+                    _initMatrix = new int[Lines, Columns];
+
+                    for (int i = 0; i < Lines; i++)
+                    {
+                        for (int j = 0; j < Columns; j++)
+                        {
+                            _initMatrix[i, j] = number.GetRandomNumber(Min,Max+1);
+                        }
+                    }
+                }
+            }
+            catch (ArgumentException ex)
+            {
+                Console.WriteLine(ex);
+                //what to do here?
+            }
+
+
+        }
+
         public MatrixClass(int lines, int columns)
         {
             try

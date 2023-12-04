@@ -11,8 +11,8 @@ class Programs
         int secondDimension;
         firstDimension = inputOutput.GetUserDimension("line");
         secondDimension = inputOutput.GetUserDimension("column");
-
-        var matrix = new MatrixClass(firstDimension, secondDimension);
+        RandomNumberProvider number = new RandomNumberProvider();
+        var matrix = new MatrixClass(firstDimension, secondDimension, number);
 
         inputOutput.OutputArray(matrix);
         inputOutput.Output("Matrix trace", matrix.GetMatrixTrace(matrix).ToString());
@@ -23,3 +23,4 @@ class Programs
 }
 //Unit tests
 //Check snail shell order with 1 line, 3x5
+//Mock object for unit tests
