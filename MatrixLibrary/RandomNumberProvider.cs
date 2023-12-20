@@ -9,7 +9,7 @@
             random = new Random();
         }
 
-        public int GetRandomNumber(int Min,int Max)
+        public int GetNumber(int Min, int Max)
         {
             return random.Next(Min, Max + 1);
         }

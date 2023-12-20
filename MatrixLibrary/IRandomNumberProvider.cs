@@ -2,8 +2,8 @@
 
 namespace Matrix
 {
-    internal interface IRandomNumberProvider
+    public interface IRandomNumberProvider
     {
-        int GetRandomNumber(int Min, int Max);
+        int GetNumber(int Min, int Max);
     }
 }

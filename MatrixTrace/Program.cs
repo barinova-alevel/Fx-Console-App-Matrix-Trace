@@ -6,21 +6,38 @@ class Programs
     public const int MinMatrixEntry = 0;
     static void Main(string[] args)
     {
-        var inputOutput = new InputOutput();
-        int firstDimension;
-        int secondDimension;
-        firstDimension = inputOutput.GetUserDimension("line");
-        secondDimension = inputOutput.GetUserDimension("column");
-        RandomNumberProvider number = new RandomNumberProvider();
-        var matrix = new MatrixClass(firstDimension, secondDimension, number);
+        while (true)
+        {
+            var inputOutput = new InputOutput();
+            int firstDimension;
+            int secondDimension;
+            
+            Console.WriteLine("Do you want to generate new matrix? (yes/no): ");
+            string userInput = Console.ReadLine().ToLower();
 
-        inputOutput.OutputArray(matrix);
-        inputOutput.Output("Matrix trace", matrix.GetMatrixTrace(matrix).ToString());
-        inputOutput.Output("Matrix in snail shell order", matrix.SnailShellPath(matrix));
+            if (userInput == "no")
+            {
+                Environment.Exit(1);
+            }
+            else if (userInput != "yes")
+            {
+                Console.WriteLine("Invalid input. Please enter 'yes' or 'no'.");
+            }
+            else if(userInput == "yes") 
+            {
+            firstDimension = inputOutput.GetUserDimension("line");
+            secondDimension = inputOutput.GetUserDimension("column");
+            RandomNumberProvider number = new RandomNumberProvider();
 
-        Console.ReadKey();
+            var matrix = new MatrixClass(firstDimension, secondDimension, number);
+
+            inputOutput.OutputArray(matrix);
+            inputOutput.Output("Matrix trace", matrix.GetMatrixTrace(matrix).ToString());
+            inputOutput.Output("Matrix in snail shell order", matrix.SnailShellPath(matrix));
+            }
+        }
+        
     }
 }
 //Unit tests
-//Check snail shell order with 1 line, 3x5
 //Mock object for unit tests

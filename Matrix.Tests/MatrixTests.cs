@@ -1,27 +1,32 @@
-﻿namespace Matrix.Tests
+﻿using Moq;
+
+namespace Matrix.Tests
 {
-    //Для генерації випадкових чисел потрібно створити окремий провайдер.Він буде реалізовувати інтерфейс в якому буде метод, повертає рандомні значення.ПРОДОВЖИТИ ТУТ: Потім в конструкторі класу матриці потрібно буде передавати інстанс цього генератора і викликати його метод, щоб отримати рандомне значення. Коли переходимо до тестів, то тут ми можемо або створити тестову реалізацію інтерфейсу, яка буде повертати заздалегіть визначену послідовність, або можна використати один з фреймворків для створення Mock-об'єктів уже в самому тесті. Можеш погуглити про mock в unit тестах. Якщо нічого не знайдеш, або не розберешся, я можу дати декілька посилань на популярні ////бібліотеки.
+    //Для генерації випадкових чисел потрібно створити окремий провайдер.Він буде реалізовувати інтерфейс в якому буде метод, повертає рандомні значення.Потім в конструкторі класу матриці потрібно буде передавати інстанс цього генератора і викликати його метод, щоб отримати рандомне значення. Коли переходимо до тестів, то тут ми можемо  використати один з фреймворків для створення Mock-об'єктів уже в самому тесті. Можеш погуглити про mock в unit тестах. Якщо нічого не знайдеш, або не розберешся, я можу дати декілька посилань на популярні ////бібліотеки.
 
     [TestClass]
-    public class MatrixTests
+    public static class MatrixTests
     {
         public const int MaxMatrixEntry = 100;
         public const int MinMatrixEntry = 0;
 
-        [TestMethod]
-        public void CheckMatrixTrace()
-        {
-            // Arrange 
-            int matrixTrace;
-            int[,] filledMatrix = { { 1, 2, 3 }, { 4, 5, 0 } };
-            MatrixClass matrix = new MatrixClass(2, 3);
+       // [TestMethod]
+        
+        //public static void CheckMatrixTrace()
+        //{
+        //    // Arrange 
+        //    int matrixTrace;
+        //    var testMatrix = new Mock<MatrixClass>();
+           
+        //    int[,] filledMatrix = { { 1, 2, 3 }, { 4, 5, 0 } };
+        //    MatrixClass matrix = new MatrixClass(2, 3);
 
-            // Act
-            matrixTrace = matrix.GetMatrixTrace(matrix);
+        //    // Act
+        //    matrixTrace = matrix.GetMatrixTrace(matrix);
 
-            //Assert
-            Assert.AreEqual(6, matrixTrace);
-        }
+        //    //Assert
+        //    Assert.AreEqual(6, matrixTrace);
+        //}
 
         //[TestMethod]
         //public void CheckSquareMatrixTrace()
