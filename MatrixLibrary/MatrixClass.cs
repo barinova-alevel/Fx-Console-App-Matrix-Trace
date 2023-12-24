@@ -8,7 +8,7 @@ namespace Matrix
         private int[,] _initMatrix;
         public int Lines { get; private set; }
         public int Columns { get; private set; }
-        public MatrixClass(int lines, int columns, IRandomNumberProvider numberGenerator)
+        public MatrixClass(int lines, int columns, INumberProvider numberGenerator)
         {
             try
             {

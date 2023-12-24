@@ -1,6 +1,6 @@
 ﻿namespace Matrix
 {
-    public class RandomNumberProvider : IRandomNumberProvider
+    public class RandomNumberProvider : INumberProvider
     {
         private Random random;
 

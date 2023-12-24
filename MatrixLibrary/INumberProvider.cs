@@ -2,7 +2,7 @@
 
 namespace Matrix
 {
-    public interface IRandomNumberProvider
+    public interface INumberProvider
     {
         int GetNumber(int Min, int Max);
     }

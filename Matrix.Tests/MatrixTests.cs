@@ -5,58 +5,73 @@ namespace Matrix.Tests
     //Для генерації випадкових чисел потрібно створити окремий провайдер.Він буде реалізовувати інтерфейс в якому буде метод, повертає рандомні значення.Потім в конструкторі класу матриці потрібно буде передавати інстанс цього генератора і викликати його метод, щоб отримати рандомне значення. Коли переходимо до тестів, то тут ми можемо  використати один з фреймворків для створення Mock-об'єктів уже в самому тесті. Можеш погуглити про mock в unit тестах. Якщо нічого не знайдеш, або не розберешся, я можу дати декілька посилань на популярні ////бібліотеки.
 
     [TestClass]
-    public static class MatrixTests
+    public class MatrixTests
     {
         public const int MaxMatrixEntry = 100;
         public const int MinMatrixEntry = 0;
 
-       // [TestMethod]
-        
-        //public static void CheckMatrixTrace()
-        //{
-        //    // Arrange 
-        //    int matrixTrace;
-        //    var testMatrix = new Mock<MatrixClass>();
-           
-        //    int[,] filledMatrix = { { 1, 2, 3 }, { 4, 5, 0 } };
-        //    MatrixClass matrix = new MatrixClass(2, 3);
+        [TestMethod]
+        public void CheckMatrixTrace()
+        {
+            //Arrange
+            // Created implementation of INumberProvider for test purposes
+            INumberProvider numberProvider = new TestNumberProvider();
+            MatrixClass matrix = new MatrixClass(3, 5, numberProvider);
+            int result;
 
-        //    // Act
-        //    matrixTrace = matrix.GetMatrixTrace(matrix);
+            //Act
+            result = matrix.GetMatrixTrace(matrix);
 
-        //    //Assert
-        //    Assert.AreEqual(6, matrixTrace);
-        //}
+            //Assert
+            Assert.AreEqual(21, result);
 
-        //[TestMethod]
-        //public void CheckSquareMatrixTrace()
-        //{
-        //    // Arrange
-        //    int matrixTrace;
-        //    int[,] filledMatrix = { { 1, 2, 3 }, { 4, 5, 10 }, { 100, 22, 23 } };
-        //    MatrixClass matrix = new MatrixClass(3,3);
+            //Attempt to perform test with mock object:
+            // Arrange
+            var moqNumberGenerator = new Mock<INumberProvider>();
+            int resultForMoq;
 
-        //    // Act
-        //    matrixTrace = matrix.GetMatrixTrace(filledMatrix);
+            //according to this logic, all matrix entries are 10
+            //10 10 10
+            //10 10 10
+            moqNumberGenerator.Setup(number => number.GetNumber(MinMatrixEntry, MaxMatrixEntry)).Returns(10);
+            var matrix1 = new MatrixClass(2, 3, moqNumberGenerator.Object);
 
-        //    //Assert
-        //    Assert.AreEqual(29, matrixTrace);
-        //}
+            // Act
+            resultForMoq = matrix1.GetMatrixTrace(matrix1);
 
-        //[TestMethod]
-        //public void CheckEmptyMatrixTrace()
-        //{
-        //    // Arrange
-        //    int matrixTrace;
-        //    int[,] filledMatrix = { { }, { } };
-        //    MatrixClass matrix = new MatrixClass(1,2);
+            //Assert
+            Assert.AreEqual(20, resultForMoq);
+        }
 
-        //    // Act
-        //    matrixTrace = matrix.GetMatrixTrace(filledMatrix);
+        [TestMethod]
+        public void CheckSquareMatrixTrace()
+        {
+            //Arrange
+            INumberProvider numberProvider = new TestNumberProvider();
+            MatrixClass matrix = new MatrixClass(2, 2, numberProvider);
+            int result;
 
-        //    //Assert
-        //    Assert.AreEqual(0, matrixTrace);
-        //}
+            //Act
+            result = matrix.GetMatrixTrace(matrix);
+
+            //Assert
+            Assert.AreEqual(5, result);
+        }
+
+        [TestMethod]
+        public void CheckEmptyMatrixTrace()
+        {
+            //Arrange
+            INumberProvider numberProvider = new TestNumberProvider();
+            MatrixClass matrix = new MatrixClass(0, 0, numberProvider);
+            int result;
+
+            //Act
+            result = matrix.GetMatrixTrace(matrix);
+
+            //Assert
+            Assert.AreEqual(0, result);
+        }
 
         //[TestMethod]
         //public void CheckOnNull()

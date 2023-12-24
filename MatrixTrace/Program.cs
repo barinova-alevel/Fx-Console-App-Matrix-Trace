@@ -27,7 +27,7 @@ class Programs
             {
             firstDimension = inputOutput.GetUserDimension("line");
             secondDimension = inputOutput.GetUserDimension("column");
-            RandomNumberProvider number = new RandomNumberProvider();
+            INumberProvider number = new RandomNumberProvider();
 
             var matrix = new MatrixClass(firstDimension, secondDimension, number);
 
