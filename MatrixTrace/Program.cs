@@ -4,7 +4,7 @@ class Programs
 {
     public const int MaxMatrixEntry = 100;
     public const int MinMatrixEntry = 0;
-    static void Main(string[] args)
+    static void Main()
     {
         while (true)
         {
@@ -36,8 +36,8 @@ class Programs
             inputOutput.Output("Matrix in snail shell order", matrix.SnailShellPath(matrix));
             }
         }
-        
     }
 }
-//Unit tests
-//Mock object for unit tests
+//Look through the project
+//error in unit tests: System.Collections.Generic.KeyNotFoundException: Unable to find UniqueTest VSTestAdapter
+//Check for Other Test Adapters:

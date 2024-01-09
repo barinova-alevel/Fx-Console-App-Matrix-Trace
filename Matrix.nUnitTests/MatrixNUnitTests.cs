@@ -12,11 +12,12 @@ namespace Matrix.nUnitTests
         [TestCase(new[] { 5, 2, 52, 99, 100, 101 }, 105)] 
         [TestCase(new[] { -1, 2, 52, 99, 1, 101 }, 0)] 
         [TestCase(new[] { 101, 2, 52, 99, 5, 101 }, 106)]
+
         public void CheckMatrixTrace(int[] entries, int expected)
         {
             // Arrange
             var moqNumberGenerator = new Mock<INumberProvider>();
-            int position = -1;
+            //int position = -1;
             
             Func<int, int> number = (position) =>  { position++; return entries[position]; };
             moqNumberGenerator.Setup(numberProvider => numberProvider.GetNumber(MinMatrixEntry, MaxMatrixEntry)).Returns(number);

@@ -2,16 +2,16 @@
 {
     public class RandomNumberProvider : INumberProvider
     {
-        private Random random;
+        private Random _random;
 
         public RandomNumberProvider()
         {
-            random = new Random();
+            _random = new Random();
         }
 
         public int GetNumber(int Min, int Max)
         {
-            return random.Next(Min, Max + 1);
+            return _random.Next(Min, Max + 1);
         }
     }
 }

@@ -10,7 +10,6 @@
             Console.WriteLine($"Enter the number of {dimensionName}s, positive integer: ");
             userInput = Console.ReadLine();
             dimension = CheckNumber(userInput);
-            //dimension = int.Parse(userInput);
             return dimension;
         }
         
