@@ -17,10 +17,10 @@ namespace Matrix.nUnitTests
         {
             // Arrange
             var moqNumberGenerator = new Mock<INumberProvider>();
-            //int position = -1;
+            int position = -1;
             
-            Func<int, int> number = (position) =>  { position++; return entries[position]; };
-            moqNumberGenerator.Setup(numberProvider => numberProvider.GetNumber(MinMatrixEntry, MaxMatrixEntry)).Returns(number);
+            Func<int, int, int> number = (min,max) =>  { position++; return entries[position]; };
+            moqNumberGenerator.Setup(numberProvider => numberProvider.GetNumber(It.IsAny<int>(), It.IsAny<int>())).Returns(number);
 
             var matrix1 = new MatrixClass(2, 3, moqNumberGenerator.Object);
 
