@@ -76,27 +76,5 @@ namespace Matrix.nUnitTests
             Assert.That(snailShellPath, Is.EqualTo(expected));
             Console.WriteLine($"Actual Result: {snailShellPath} \nExpected Result: {expected}");
         }
-
-        /*[Test]
-        public void CheckThrowingException()
-        {
-            // Arrange
-            var moqNumberGenerator = new Mock<INumberProvider>();
-            moqNumberGenerator.Setup(numberProvider => numberProvider.GetNumber(It.IsAny<int>(), It.IsAny<int>())).Throws(new IndexOutOfRangeException("Error message"));
-            var matrix1 = new MatrixClass(-1, 3, moqNumberGenerator.Object);
-
-            // Act & Assert
-            Assert.Throws<IndexOutOfRangeException>(() => matrix1.GetMatrixTrace(matrix1));
-        } */
-
-        /*[Test]
-        public void CheckOnNull()
-        {
-            //Arrange
-           var matrix1 = new MatrixClass(1, 3, null);
-
-            //Act & Assert
-            Assert.Throws<NullReferenceException>(() => matrix1.GetMatrixTrace(matrix1));
-        } */
     }
 }

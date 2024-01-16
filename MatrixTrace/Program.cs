@@ -11,7 +11,7 @@ class Programs
             var inputOutput = new InputOutput();
             int firstDimension;
             int secondDimension;
-            
+
             Console.WriteLine("Do you want to generate new matrix? (yes/no): ");
             string userInput = Console.ReadLine().ToLower();
 
@@ -23,21 +23,18 @@ class Programs
             {
                 Console.WriteLine("Invalid input. Please enter 'yes' or 'no'.");
             }
-            else if(userInput == "yes") 
+            else if (userInput == "yes")
             {
-            firstDimension = inputOutput.GetUserDimension("line");
-            secondDimension = inputOutput.GetUserDimension("column");
-            INumberProvider number = new RandomNumberProvider();
+                firstDimension = inputOutput.GetUserDimension("line");
+                secondDimension = inputOutput.GetUserDimension("column");
+                INumberProvider number = new RandomNumberProvider();
 
-            var matrix = new MatrixClass(firstDimension, secondDimension, number);
+                var matrix = new MatrixClass(firstDimension, secondDimension, number);
 
-            inputOutput.OutputArray(matrix);
-            inputOutput.Output("Matrix trace", matrix.GetMatrixTrace(matrix).ToString());
-            inputOutput.Output("Matrix in snail shell order", matrix.SnailShellPath(matrix));
+                inputOutput.OutputArray(matrix);
+                inputOutput.Output("Matrix trace", matrix.GetMatrixTrace(matrix).ToString());
+                inputOutput.Output("Matrix in snail shell order", matrix.SnailShellPath(matrix));
             }
         }
     }
 }
-//Look through the project
-//error in unit tests: System.Collections.Generic.KeyNotFoundException: Unable to find UniqueTest VSTestAdapter
-//Check for Other Test Adapters:

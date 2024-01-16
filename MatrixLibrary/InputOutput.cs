@@ -1,6 +1,6 @@
 ﻿namespace Matrix
 {
-    public class InputOutput
+    public class InputOutput : IInputOutput
     {
         public int GetUserDimension(string dimensionName)
         {
