@@ -10,31 +10,17 @@ namespace Matrix
         public int Columns { get; private set; }
         public MatrixClass(int lines, int columns, INumberProvider numberGenerator)
         {
-            try
-            {
-                if ((lines <= 0) || (columns <= 0))
-                {
-                    throw new ArgumentException("lines and columns must be greater than zero");
-                }
-                else
-                {
-                    Lines = lines;
-                    Columns = columns;
+            Lines = lines;
+            Columns = columns;
 
-                    _initMatrix = new int[Lines, Columns];
+            _initMatrix = new int[Lines, Columns];
 
-                    for (int i = 0; i < Lines; i++)
-                    {
-                        for (int j = 0; j < Columns; j++)
-                        {
-                            _initMatrix[i, j] = numberGenerator.GetNumber(Min, Max + 1);
-                        }
-                    }
-                }
-            }
-            catch (ArgumentException ex)
+            for (int i = 0; i < Lines; i++)
             {
-                Console.WriteLine(ex);
+                for (int j = 0; j < Columns; j++)
+                {
+                    _initMatrix[i, j] = numberGenerator.GetNumber(Min, Max + 1);
+                }
             }
         }
 
@@ -62,7 +48,7 @@ namespace Matrix
             }
             return matrixTrace;
         }
-        
+
         public string SnailShellPath(MatrixClass matrix)
         {
             int lineStart = 0;
@@ -90,10 +76,10 @@ namespace Matrix
                 }
                 passedColumnEnd--;
 
-                if(passedLineDown == lineEnd || passedLineUp == lineEnd)
+                if (passedLineDown == lineEnd || passedLineUp == lineEnd)
                 {
                     snailShell.AppendFormat("{0} ", matrix[lineEnd, columnEnd]);
-                    break; 
+                    break;
                 }
                 for (int i = columnEnd; i > columnStart; i--)
                 {

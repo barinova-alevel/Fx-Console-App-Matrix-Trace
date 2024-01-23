@@ -29,11 +29,17 @@ class Programs
                 secondDimension = inputOutput.GetUserDimension("column");
                 INumberProvider number = new RandomNumberProvider();
 
-                var matrix = new MatrixClass(firstDimension, secondDimension, number);
-
-                inputOutput.OutputArray(matrix);
-                inputOutput.Output("Matrix trace", matrix.GetMatrixTrace(matrix).ToString());
-                inputOutput.Output("Matrix in snail shell order", matrix.SnailShellPath(matrix));
+                if ((firstDimension > 0) && (secondDimension > 0))
+                {
+                    var matrix = new MatrixClass(firstDimension, secondDimension, number);
+                    inputOutput.OutputArray(matrix);
+                    inputOutput.Output("Matrix trace", matrix.GetMatrixTrace(matrix).ToString());
+                    inputOutput.Output("Matrix in snail shell order", matrix.SnailShellPath(matrix));
+                }
+                else
+                {
+                    throw new ArgumentException("lines and columns must be greater than zero");
+                }
             }
         }
     }

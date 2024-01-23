@@ -1,4 +1,5 @@
-﻿using Moq;
+﻿using System.Numerics;
+using Moq;
 
 namespace Matrix.nUnitTests
 {
@@ -18,10 +19,8 @@ namespace Matrix.nUnitTests
             // Arrange
             var moqNumberGenerator = new Mock<INumberProvider>();
             int position = -1;
-
             Func<int, int, int> number = (min, max) => { position++; return entries[position]; };
             moqNumberGenerator.Setup(numberProvider => numberProvider.GetNumber(It.IsAny<int>(), It.IsAny<int>())).Returns(number);
-
             var matrix1 = new MatrixClass(2, 3, moqNumberGenerator.Object);
 
             // Act
@@ -33,15 +32,13 @@ namespace Matrix.nUnitTests
         }
 
         [TestCase(new[] { 0, 1, 52, 99, 100, 101 }, "0 1 52 101 100 99 ")]
-                public void CheckSnailShellPath_2x3(int[] entries, string expected)
+        public void CheckSnailShellPath_2x3(int[] entries, string expected)
         {
             // Arrange
             var moqNumberGenerator = new Mock<INumberProvider>();
             int position = -1;
-
             Func<int, int, int> number = (min, max) => { position++; return entries[position]; };
             moqNumberGenerator.Setup(numberProvider => numberProvider.GetNumber(It.IsAny<int>(), It.IsAny<int>())).Returns(number);
-
             var matrix1 = new MatrixClass(2, 3, moqNumberGenerator.Object);
 
             // Act
@@ -59,14 +56,8 @@ namespace Matrix.nUnitTests
             // Arrange
             var moqNumberGenerator = new Mock<INumberProvider>();
             int position = -1;
-
-            Func<int, int, int> number = (min, max) =>
-            {
-                position++;
-                return entries[position];
-            };
+            Func<int, int, int> number = (min, max) => { position++; return entries[position]; };
             moqNumberGenerator.Setup(numberProvider => numberProvider.GetNumber(It.IsAny<int>(), It.IsAny<int>())).Returns(number);
-
             var matrix1 = new MatrixClass(10, 7, moqNumberGenerator.Object);
 
             // Act
@@ -75,6 +66,33 @@ namespace Matrix.nUnitTests
             //Assert
             Assert.That(snailShellPath, Is.EqualTo(expected));
             Console.WriteLine($"Actual Result: {snailShellPath} \nExpected Result: {expected}");
+        }
+
+        [Test]
+        public void CheckThrowingException()
+        {
+            // Arrange
+            var moqNumberGenerator = new Mock<INumberProvider>();
+            moqNumberGenerator = null;
+
+            // Act & Assert
+            Assert.Throws<NullReferenceException>(() => new MatrixClass(1, 1, moqNumberGenerator.Object));
+        }
+
+        [TestCase(new[] { 0, 1 })]
+        public void CheckOnNull(int[] entries)
+        {
+            // Arrange
+            var moqNumberGenerator = new Mock<INumberProvider>();
+            var moqMatrixTrace = new Mock<MatrixClass>();
+            int position = -1;
+            Func<int, int, int> number = (min, max) => { position++; return entries[position]; };
+            moqNumberGenerator.Setup(numberProvider => numberProvider.GetNumber(It.IsAny<int>(), It.IsAny<int>())).Returns(number);
+            var matrix1 = new MatrixClass(2, 3, moqNumberGenerator.Object);
+            moqMatrixTrace.Setup(matrix1 => matrix1.GetMatrixTrace(It.IsAny<MatrixClass>())).Returns(null);
+
+            //Act & Assert
+            Assert.Throws<NullReferenceException>(() => matrix1.GetMatrixTrace(matrix1));
         }
     }
 }
