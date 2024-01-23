@@ -79,6 +79,19 @@ namespace Matrix.nUnitTests
             Assert.Throws<NullReferenceException>(() => new MatrixClass(1, 1, moqNumberGenerator.Object));
         }
 
+        [TestCase(new[] { 0, 1, 52, 99, 100, 101 })]
+        public void CheckArgumentException(int[] entries)
+        {
+            // Arrange
+            var moqNumberGenerator = new Mock<INumberProvider>();
+            int position = -1;
+            Func<int, int, int> number = (min, max) => { position++; return entries[position]; };
+            moqNumberGenerator.Setup(numberProvider => numberProvider.GetNumber(It.IsAny<int>(), It.IsAny<int>())).Returns(number);
+
+            //Act & Assert
+            Assert.Throws<ArgumentException>(() => new MatrixClass(-1, 0, moqNumberGenerator.Object));
+        }
+
         [TestCase(new[] { 0, 1 })]
         public void CheckOnNull(int[] entries)
         {
