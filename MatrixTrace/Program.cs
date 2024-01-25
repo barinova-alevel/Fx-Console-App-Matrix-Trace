@@ -2,8 +2,6 @@
 
 class Programs
 {
-    public const int MaxMatrixEntry = 100;
-    public const int MinMatrixEntry = 0;
     static void Main()
     {
         while (true)
@@ -41,6 +39,7 @@ class Programs
                     throw new ArgumentException("lines and columns must be greater than zero");
                 }
             }
+
         }
     }
 }

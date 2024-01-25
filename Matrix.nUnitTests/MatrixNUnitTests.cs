@@ -1,5 +1,4 @@
-﻿using System.Numerics;
-using Moq;
+﻿using Moq;
 
 namespace Matrix.nUnitTests
 {
@@ -30,15 +29,16 @@ namespace Matrix.nUnitTests
             Console.WriteLine($"Actual Result: {actualMatrixTrace}, Expected Result: {expected}");
         }
 
-        [TestCase(new[] { 0, 1, 52, 99, 100, 101 }, "0 1 52 101 100 99 ")]
-        public void CheckSnailShellPath_2x3(int[] entries, string expected)
+        [TestCase(new[] { 0, 1, 52, 99, 100, 101 }, 2, 3, "0 1 52 101 100 99 ")]
+        [TestCase(new[] { 82, 87, 24, 47, 59, 42, 42, 11, 78, 78, 53, 14, 42, 54, 82, 16, 85, 100, 32, 8, 24, 63, 60, 26, 38, 4, 97, 70, 20, 77, 0, 93, 59, 71, 81, 97, 84, 17, 46, 36, 16, 15, 31, 9, 31, 58, 42, 45, 28, 44, 85, 11, 16, 66, 4, 23, 73, 54, 95, 82, 3, 15, 7, 0, 81, 59, 1, 70, 3, 71, 1 }, 10, 7, "82 87 24 47 59 42 42 54 24 70 81 15 28 23 7 71 3 70 1 59 81 0 73 44 31 97 20 63 82 11 78 78 53 14 42 8 97 71 16 45 4 15 3 82 95 54 85 9 84 77 60 16 85 100 32 4 59 36 42 66 16 11 31 17 0 26 38 93 46 58 "), Description("Test of SnailShellPass for 10X7 matrix as bigger then ordinary one")]
+        public void CheckSnailShellPath(int[] entries, int lines, int columns, string expected)
         {
             // Arrange
             var moqNumberGenerator = new Mock<INumberProvider>();
             int position = -1;
             Func<int, int, int> number = (min, max) => { position++; return entries[position]; };
             moqNumberGenerator.Setup(numberProvider => numberProvider.GetNumber(It.IsAny<int>(), It.IsAny<int>())).Returns(number);
-            var matrix1 = new MatrixClass(2, 3, moqNumberGenerator.Object);
+            var matrix1 = new MatrixClass(lines, columns, moqNumberGenerator.Object);
 
             // Act
             var snailShellPath = matrix1.SnailShellPath(matrix1);
@@ -46,24 +46,6 @@ namespace Matrix.nUnitTests
             //Assert
             Assert.That(snailShellPath, Is.EqualTo(expected));
             Console.WriteLine($"Actual Result: {snailShellPath}, Expected Result: {expected}");
-        }
-
-        [TestCase(new[] { 82, 87, 24, 47, 59, 42, 42, 11, 78, 78, 53, 14, 42, 54, 82, 16, 85, 100, 32, 8, 24, 63, 60, 26, 38, 4, 97, 70, 20, 77, 0, 93, 59, 71, 81, 97, 84, 17, 46, 36, 16, 15, 31, 9, 31, 58, 42, 45, 28, 44, 85, 11, 16, 66, 4, 23, 73, 54, 95, 82, 3, 15, 7, 0, 81, 59, 1, 70, 3, 71, 1 }, "82 87 24 47 59 42 42 54 24 70 81 15 28 23 7 71 3 70 1 59 81 0 73 44 31 97 20 63 82 11 78 78 53 14 42 8 97 71 16 45 4 15 3 82 95 54 85 9 84 77 60 16 85 100 32 4 59 36 42 66 16 11 31 17 0 26 38 93 46 58 "), Description("Test of SnailShellPass for 10X7 matrix as bigger then ordinary one")]
-        public void CheckSnailShellPath_10x7(int[] entries, string expected)
-        {
-            // Arrange
-            var moqNumberGenerator = new Mock<INumberProvider>();
-            int position = -1;
-            Func<int, int, int> number = (min, max) => { position++; return entries[position]; };
-            moqNumberGenerator.Setup(numberProvider => numberProvider.GetNumber(It.IsAny<int>(), It.IsAny<int>())).Returns(number);
-            var matrix1 = new MatrixClass(10, 7, moqNumberGenerator.Object);
-
-            // Act
-            var snailShellPath = matrix1.SnailShellPath(matrix1);
-
-            //Assert
-            Assert.That(snailShellPath, Is.EqualTo(expected));
-            Console.WriteLine($"Actual Result: {snailShellPath} \nExpected Result: {expected}");
         }
 
         [Test]
